@@ -14,7 +14,7 @@ public class jdbc_test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			//jdbc ¿¬°á
+			//jdbc ì—°ê²°
 			String url = "jdbc:mysql://localhost/project_db";
 			Connection conn = DriverManager.getConnection(url,"root","0711");
 			Statement stmt = conn.createStatement();
@@ -28,7 +28,7 @@ public class jdbc_test {
 			PreparedStatement pStmt6 = conn.prepareStatement("delete from customers where CustomerID=?");
 	
 			
-			//¸Þ´º ¼±ÅÃ È­¸é
+			//ë©”ë‰´ ì„ íƒ í™”ë©´
 			Scanner sc = new Scanner(System.in);
 			int flag=1;
 			int menu;
@@ -36,15 +36,15 @@ public class jdbc_test {
 				System.out.println("\n=====================");
 				System.out.println("        MENU");
 				System.out.println("=====================");
-				System.out.println("1. Insert - È¸¿ø °¡ÀÔ");
-				System.out.println("2. Select1 - ±¸¸Å »óÇ° ¸ñ·Ï Á¶È¸");
-				System.out.println("3. Select2 - Á¦Ç°ÀÇ Æò±Õ ¹è¼ÛÀÏ Á¶È¸");
-				System.out.println("4. Select3 - Á¦Ç°ÀÇ ÆÇ¸Å¾× Á¶È¸");
-				System.out.println("5. Update - °³ÀÎ Á¤º¸ ¼öÁ¤");
-				System.out.println("6. Delete - È¸¿ø Å»Åð");
+				System.out.println("1. Insert - íšŒì› ê°€ìž…");
+				System.out.println("2. Select1 - êµ¬ë§¤ ìƒí’ˆ ëª©ë¡ ì¡°íšŒ");
+				System.out.println("3. Select2 - ì œí’ˆì˜ í‰ê·  ë°°ì†¡ì¼ ì¡°íšŒ");
+				System.out.println("4. Select3 - ì œí’ˆì˜ íŒë§¤ì•¡ ì¡°íšŒ");
+				System.out.println("5. Update - ê°œì¸ ì •ë³´ ìˆ˜ì •");
+				System.out.println("6. Delete - íšŒì› íƒˆí‡´");
 				System.out.println("0. Exit");
 				System.out.println("=====================");
-				System.out.print("¿øÇÏ½Ã´Â ¸Þ´º¸¦ ¼±ÅÃ ÇÏ¼¼¿ä");
+				System.out.print("ì›í•˜ì‹œëŠ” ë©”ë‰´ë¥¼ ì„ íƒ í•˜ì„¸ìš”");
 				menu = sc.nextInt();
 				switch(menu) {
 				case 0:
@@ -55,16 +55,16 @@ public class jdbc_test {
 					//ResultSet
 					ResultSet rs1=null;
 					
-					//È¸¿øÁ¤º¸ ¹Þ±â
-					System.out.println("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+					//íšŒì›ì •ë³´ ë°›ê¸°
+					System.out.println("ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”: ");
 					String CustomerName = sc.next();
-					System.out.println("ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ì£¼ì†Œë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					String Address = sc.next();
-					System.out.println("»ç´Â µµ½Ã¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ì‚¬ëŠ” ë„ì‹œë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					String City = sc.next();
-					System.out.println("¿ìÆí ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ìš°íŽ¸ ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					int PostalCode = sc.nextInt();
-					System.out.println("»ç´Â ³ª¶ó¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ì‚¬ëŠ” ë‚˜ë¼ë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					String Country = sc.next();
 					
 					pStmt1.setString(1, CustomerName);
@@ -74,8 +74,8 @@ public class jdbc_test {
 					pStmt1.setString(5, Country);
 					pStmt1.executeUpdate();
 					
-					//¿Ï·á Ç¥½Ã + °¡ÀÔµÈ È¸¿ø Á¤º¸ º¸¿©ÁÖ±â
-					System.out.println("È¸¿ø °¡ÀÔ ¿Ï·á!");
+					//ì™„ë£Œ í‘œì‹œ + ê°€ìž…ëœ íšŒì› ì •ë³´ ë³´ì—¬ì£¼ê¸°
+					System.out.println("íšŒì› ê°€ìž… ì™„ë£Œ!");
 					rs1 = stmt.executeQuery("select * from customers where CustomerID >= all(select CustomerID from customers)");
 					displayResultSetWithColumnNames(rs1);
 					
@@ -86,15 +86,15 @@ public class jdbc_test {
 					//ResultSet
 					ResultSet rs2=null;
 					
-					//CustomerID ¹Þ±â
-					System.out.println("CustomerID¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					//CustomerID ë°›ê¸°
+					System.out.println("CustomerIDë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					int CustomerID = sc.nextInt();
 					pStmt2.setInt(1, CustomerID);
 					
-					//SQL ½ÇÇà
+					//SQL ì‹¤í–‰
 					rs2 = pStmt2.executeQuery();
 					
-					//ÀÐ¾î¿À±â
+					//ì½ì–´ì˜¤ê¸°
 					displayResultSetWithColumnNames(rs2);
 					
 					rs2.close();
@@ -104,15 +104,15 @@ public class jdbc_test {
 					//ResultSet
 					ResultSet rs3=null;
 					
-					//ProductID ¹Þ±â
-					System.out.println("ProductID¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					//ProductID ë°›ê¸°
+					System.out.println("ProductIDë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					int ProductID = sc.nextInt();
 					pStmt3.setInt(1, ProductID);
 					
-					//SQL ½ÇÇà
+					//SQL ì‹¤í–‰
 					rs3 = pStmt3.executeQuery();
 					
-					//ÀÐ¾î¿À±â
+					//ì½ì–´ì˜¤ê¸°
 					displayResultSetWithColumnNames(rs3);
 
 					rs3.close();
@@ -122,10 +122,10 @@ public class jdbc_test {
 					//ResultSet
 					ResultSet rs4=null;
 					
-					//SQL ½ÇÇà
+					//SQL ì‹¤í–‰
 					rs4 = stmt.executeQuery("select p.ProductID as ProductID, round(sum(o.Quantity*p.Price),2) as total_sales from orderdetails o join product p on o.ProductID=p.ProductID group by ProductID");
 					
-					//ÀÐ¾î¿À±â
+					//ì½ì–´ì˜¤ê¸°
 					displayResultSetWithColumnNames(rs4);
 					
 					rs4.close();
@@ -135,20 +135,20 @@ public class jdbc_test {
 					//ResultSEt
 					ResultSet rs5=null;
 					
-					//¼öÁ¤ÇÒ CustomerID ¹Þ±â
-					System.out.println("CustomerID¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					//ìˆ˜ì •í•  CustomerID ë°›ê¸°
+					System.out.println("CustomerIDë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					CustomerID = sc.nextInt();
 					
-					//¼öÁ¤ÇÒ Á¤º¸ ÀÔ·Â ¹Þ±â
-					System.out.println("º¯°æÇÒ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+					//ìˆ˜ì •í•  ì •ë³´ ìž…ë ¥ ë°›ê¸°
+					System.out.println("ë³€ê²½í•  ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”: ");
 					CustomerName = sc.next();
-					System.out.println("º¯°æÇÒ ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ë³€ê²½í•  ì£¼ì†Œë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					Address = sc.next();
-					System.out.println("º¯°æÇÒ »ç´Â µµ½Ã¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ë³€ê²½í•  ì‚¬ëŠ” ë„ì‹œë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					City = sc.next();
-					System.out.println("º¯°æÇÒ ¿ìÆí ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ë³€ê²½í•  ìš°íŽ¸ ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					PostalCode = sc.nextInt();
-					System.out.println("º¯°æÇÒ »ç´Â ³ª¶ó¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					System.out.println("ë³€ê²½í•  ì‚¬ëŠ” ë‚˜ë¼ë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					Country = sc.next();
 					
 					pStmt5.setString(1, CustomerName);
@@ -158,8 +158,8 @@ public class jdbc_test {
 					pStmt5.setString(5, Country);
 					pStmt5.setInt(6, CustomerID);
 					pStmt5.executeUpdate();
-					//¿Ï·á Ç¥½Ã + ¼öÁ¤µÈ È¸¿ø Á¤º¸ º¸¿©ÁÖ±â
-					System.out.println("È¸¿ø Á¤º¸ ¼öÁ¤ ¿Ï·á!!");
+					//ì™„ë£Œ í‘œì‹œ + ìˆ˜ì •ëœ íšŒì› ì •ë³´ ë³´ì—¬ì£¼ê¸°
+					System.out.println("íšŒì› ì •ë³´ ìˆ˜ì • ì™„ë£Œ!!");
 					pStmt5_1.setInt(1, CustomerID);
 					rs5 = pStmt5_1.executeQuery();
 					displayResultSetWithColumnNames(rs5);
@@ -168,17 +168,17 @@ public class jdbc_test {
 					break;
 					
 				case 6:
-					//CustomerID ¹Þ±â
-					System.out.println("CustomerID¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+					//CustomerID ë°›ê¸°
+					System.out.println("CustomerIDë¥¼ ìž…ë ¥í•˜ì„¸ìš”: ");
 					CustomerID = sc.nextInt();
 					pStmt6.setInt(1, CustomerID);
 					
-					//SQL ½ÇÇà
+					//SQL ì‹¤í–‰
 					int res = pStmt6.executeUpdate();
 					
-					//Å»Åð ¿©ºÎ È®ÀÎ
+					//íƒˆí‡´ ì—¬ë¶€ í™•ì¸
 					if(res>0) {
-						System.out.println("Å»Åð ¿Ï·á!");
+						System.out.println("íƒˆí‡´ ì™„ë£Œ!");
 					}
 					break;
 		
@@ -208,7 +208,7 @@ public class jdbc_test {
 			System.out.print(metaData.getColumnName(i) + "\t");
        		 }
 		System.out.println();
-		//¼± Ãß°¡
+		//ì„  ì¶”ê°€
 		System.out.println("\n-------------------------------------------------------------------------------");
         // Print data
 		while (resultSet.next()) {
